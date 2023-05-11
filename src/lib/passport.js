@@ -8,7 +8,8 @@ passport.use(
   "local.signin",
   new LocalStrategy(
     {
-      usernameField: "email",
+      usernameField: "email",// NOSONAR
+      passwordField: 'password',// NOSONAR
       passwordField: "password",
       passReqToCallback: true,
     },

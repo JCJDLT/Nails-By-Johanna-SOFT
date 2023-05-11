@@ -1,10 +1,12 @@
 import app from "../src/app";
 import request from "supertest";
+import dotenv from 'dotenv';
+dotenv.config();
 
 async function login() {
     const response = await request(app).post('/signin').send({
-        email: 'jcjdlt@hotmail.com',
-        password: '123'
+        email: process.env.TEST_EMAIL,
+        password: process.env.TEST_PASSWORD,
     });
     // Guarda la cookie de sesión
     const cookie = response.headers['set-cookie'];
