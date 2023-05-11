@@ -36,6 +36,7 @@ export const getHoraActual = () => {
 
 export const transporter = nodemailer.createTransport({
   service: 'gmail',
+  secure: true,
   auth: {
     user: 'nailsbyjohannadelatorre@gmail.com',
     pass: 'kqfwrebvhezebhjw'
