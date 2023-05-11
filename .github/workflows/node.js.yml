@@ -31,4 +31,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: pm2 restart /home/ubuntu/nails/_work/Proyecto_Software_3/Proyecto_Software_3/src/index.js
+    - run: pm2 restart /home/ubuntu/nails/_work/Nails-By-Johanna-SOFT/Nails-By-Johanna-SOFT/src/index.js
