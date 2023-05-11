@@ -10,7 +10,6 @@ passport.use(
     {
       usernameField: "email",// NOSONAR
       passwordField: 'password',// NOSONAR
-      passwordField: "password",
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
