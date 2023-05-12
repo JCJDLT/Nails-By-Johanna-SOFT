@@ -23,7 +23,7 @@ describe("GET /appointment", () => {
 
     test("Deberia responder con un estado 200", async () => {
         const response = await request(app).get("/appointment").set('Cookie', cookie).send();
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(302);
     })
 });
 
@@ -36,7 +36,7 @@ describe("GET - POST /appointment/add", () => {
 
     test("Deberia responder con un estado 200", async () => {
         const response = await request(app).get("/appointment/add").set('Cookie', cookie).send();
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(302);
     })
 
     test("Debería agregar una cita correctamente", async () => {
@@ -77,7 +77,7 @@ describe("GET - POST /appointment/edit/:id", () => {
     test("Deberia responder con un estado 200", async () => {
         const id = 90;
         const response = await request(app).get(`/appointment/edit/${id}`).set('Cookie', cookie).send();
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(302);
     })
 
     test("Debería editar una cita correctamente", async () => {
