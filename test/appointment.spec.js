@@ -43,7 +43,8 @@ describe("GET - POST /appointment/add", () => {
         const postData = {
             date: "2024-06-12",
             start_time: "12:00:00",
-            nails: 1,
+            nails: "polygel",
+            price: 0,
         };
 
         const response = await request(app).post("/appointment/add").set('Cookie', cookie).send(postData);
@@ -57,10 +58,9 @@ describe('DELETE /appointment/delete/:id', () => {
     beforeAll(async () => {
         cookie = await login();
     });
-    
-    test('Deberia cambiar el estado de la cita y redireccionar a otra pagina', async () => {
-        const id = 61;
 
+    test('Deberia cambiar el estado de la cita y redireccionar a otra pagina', async () => {
+        const id = 96;
         const response = await request(app).get(`/appointment/delete/${id}`).set('Cookie', cookie);
         expect(response.statusCode).toBe(302);
     });
@@ -80,14 +80,15 @@ describe("GET - POST /appointment/edit/:id", () => {
     })
 
     test("Debería editar una cita correctamente", async () => {
-
+        const id = 90;
         const postData = {
             date: "2024-06-12",
             start_time: "14:00:00",
-            nails: 1,
+            nails: "polygel",
+            price: 0,
         };
 
-        const response = await request(app).post("/appointment/add").set('Cookie', cookie).send(postData);
+        const response = await request(app).post(`/appointment/edit/${id}`).set('Cookie', cookie).send(postData);
         expect(response.statusCode).toBe(302);
     })
 });

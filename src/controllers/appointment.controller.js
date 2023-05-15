@@ -159,6 +159,14 @@ export const buildAppointment = async (date, start_time, nails, req, opcion) => 
     return newAppointment;
 }
 
+export const doneAppointment = async (req, res) => {
+    const { id } = req.params;
+    const state = 2;
+    await pool.query("UPDATE appointment SET id_state = ? WHERE id = ?", [state, id]);
+    req.flash("success", "La cita se ha realizado correctamente");
+    res.redirect("/appointment");
+};
+
 export const validationPriceNails = async (selectedItem, res) => {
     const [result] = await pool.query("SELECT * FROM nails WHERE name = ?", [selectedItem]);
     let resultado;

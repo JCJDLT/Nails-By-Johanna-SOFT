@@ -40,11 +40,11 @@ export const signUp = async (req, res, next) => {
       text: `${fullname} su solicitud de registro en la pagina web Johanna nails ha sido exitoso`
     };
 
-    // Enviar el correo electrónico
+    // // Enviar el correo electrónico
     transporter.sendMail(mailOptions, (error, info) => {
       error ? console.log(error) : console.log('Correo electrónico enviado: ' + info.response);
     });
-
+    
     req.login(newUser, (err) => {
       if (err) {
         return next(err);

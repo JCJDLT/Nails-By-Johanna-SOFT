@@ -29,6 +29,12 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {{! foo }}
             <a class="dropdown-item" href="/appointment">Lista de citas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/statistics">Estadisticas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/admin">Admin</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/listpqr">Lista de pqr</a>
           </div>
         </li>
         {{/when}}
@@ -52,6 +58,12 @@
             {{user.fullname}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/createpqr">Crear Pqr</a>
+            <div class="dropdown-divider"></div>
+            {{#when user.id_rol 'eq' 2}}
+            <a class="dropdown-item" href="/listpqr">Tus Pqr</a>
+            <div class="dropdown-divider"></div>
+            {{/when}}
             <li><a class="dropdown-item" href="/logout">Salir</a></li>
           </ul>
         </li>
