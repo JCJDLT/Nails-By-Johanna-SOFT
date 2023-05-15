@@ -24,7 +24,7 @@ describe("GET - POST /signup", () => {
 
         const postData = {
             fullname: "Prueba test",
-            email: "prueba@gmail.com",
+            email: "pruebatest@gmail.com",
             phone: 3107654542,
             password1: "ejemplo",
             password2: "ejemplo",
