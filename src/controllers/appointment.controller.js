@@ -66,7 +66,7 @@ export const deleteAppointment = async (req, res) => {
 
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
-            error ? console.log(error) : console.log('Correo electrónico enviado: ' + info.response);
+            //error ? console.log(error) : console.log('Correo electrónico enviado: ' + info.response);
         });
     }
 
