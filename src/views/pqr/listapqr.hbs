@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pqrs}}
+        <tr>
+            <td>{{this.idpqr}}</td>
+            <td>{{this.tipo}}</td>
+            <td>{{this.descripcion}}</td>
+            <td>{{this.estado}}</td>
+            <td>{{dateFormat fecha 'YYYY-MM-DD'}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
