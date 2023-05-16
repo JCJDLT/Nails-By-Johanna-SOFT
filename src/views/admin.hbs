@@ -1,0 +1,56 @@
+<form id="admin-form" method="POST">
+  <input type="hidden" name="price">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each nails}}
+      <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td><input type="number" value="{{this.price}}" readonly></td>
+        <td>
+          <button type="button" class="edit-btn">Editar</button>
+          <button type="submit" class="save-btn">Guardar</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+
+<script>
+  const form = document.querySelector('#admin-form');
+  const priceInput = form.querySelector('input[name="price"]');
+  
+  const editButtons = document.querySelectorAll('.edit-btn');
+  const saveButtons = document.querySelectorAll('.save-btn');
+  
+  editButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      const input = btn.closest('tr').querySelector('input[type="number"]');
+      input.readOnly = false;
+    });
+  });
+  
+  saveButtons.forEach((btn, index) => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      
+      const row = btn.closest('tr');
+      const id = row.querySelector('td').textContent;
+      const price = row.querySelector('input[type="number"]').value;
+      
+      form.action = `/admin/${id}`;
+      priceInput.value = price;
+      
+      form.submit();
+    });
+  });
+</script>
