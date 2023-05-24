@@ -14,43 +14,28 @@ async function login() {
 }
 
 // Función para simplificar las pruebas
-async function testGetEndpoint(path,cookie) {
+async function testGetEndpoint(path, cookie) {
     const response = await request(app).get(path).set('Cookie', cookie).send();
     expect(response.statusCode).toBe(200);
 }
 
-describe("GET /profile", () => {
-    let cookie;
-    // Inicia sesión antes de ejecutar las pruebas
-    beforeAll(async () => {
-        cookie = await login();
+const testEndpoint = (endpoint) => {
+    describe(`GET ${endpoint}`, () => {
+        let cookie;
+        // Inicia sesión antes de ejecutar las pruebas
+        beforeAll(async () => {
+            cookie = await login();
+        });
+        test("deberia responder con un estado 200", async () => {
+            await testGetEndpoint(endpoint, cookie);
+        })
     });
-    test("deberia responder con un estado 200", async () => {
-        await testGetEndpoint("/profile",cookie);
-    })
-});
+};
 
-describe("GET /records", () => {
-    let cookie;
-    // Inicia sesión antes de ejecutar las pruebas
-    beforeAll(async () => {
-        cookie = await login();
-    });
-    test("deberia responder con un estado 200", async () => {
-        await testGetEndpoint("/records",cookie);
-    })
-});
+testEndpoint("/profile");
+testEndpoint("/records");
+testEndpoint("/statistics");
 
-describe("GET /statistics", () => {
-    let cookie;
-    // Inicia sesión antes de ejecutar las pruebas
-    beforeAll(async () => {
-        cookie = await login();
-    });
-    test("deberia responder con un estado 200", async () => {
-        await testGetEndpoint("/statistics",cookie);
-    })
-});
 
 describe("GET - POST /admin", () => {
     let cookie;
@@ -58,12 +43,10 @@ describe("GET - POST /admin", () => {
     beforeAll(async () => {
         cookie = await login();
     });
-    test("deberia responder con un estado 200", async () => {
-        await testGetEndpoint("/admin",cookie);
-    });
+    testEndpoint("/admin");
 
     test("Debería editar el precio de las uñas correctamente", async () => {
-        const id = 1;     
+        const id = 1;
         const postData = {
             price: 80000,
         };
