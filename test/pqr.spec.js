@@ -13,6 +13,32 @@ async function login() {
     return cookie;
 }
 
+describe("GET - POST /createpqr/", () => {
+    let cookie;
+    // Inicia sesión antes de ejecutar las pruebas
+    beforeAll(async () => {
+        cookie = await login();
+    });
+    
+    test("Debería agregar una pqr correctamente", async () => {
+
+        const postData = {
+            descripcion: "Cual es el precio de las uñas?",
+            id_user: 1,
+            fecha: "2023-05-23",
+            tipo: "Financiero",
+        };
+
+        const response = await request(app).post(`/createpqr/`).set('Cookie', cookie).send(postData);
+        expect(response.statusCode).toBe(302);
+    })
+
+    test("Deberia responder con un estado 200", async () => {
+        const response = await request(app).get("/createpqr").set('Cookie', cookie).send();
+        expect(response.statusCode).toBe(200);
+    })
+});
+
 describe("GET - POST /listpqr/", () => {
     let cookie;
     // Inicia sesión antes de ejecutar las pruebas
@@ -25,35 +51,9 @@ describe("GET - POST /listpqr/", () => {
         const response = await request(app).post(`/listpqr/${id}`).set('Cookie', cookie).send();
         expect(response.statusCode).toBe(302);
     })
-    
+
     test("Deberia responder con un estado 200", async () => {
         const response = await request(app).get("/listpqr").set('Cookie', cookie).send();
         expect(response.statusCode).toBe(200);
-    })
-});
-
-describe("GET - POST /createpqr/", () => {
-    let cookie;
-    // Inicia sesión antes de ejecutar las pruebas
-    beforeAll(async () => {
-        cookie = await login();
-    });
-
-    test("Deberia responder con un estado 200", async () => {
-        const response = await request(app).get("/createpqr").set('Cookie', cookie).send();
-        expect(response.statusCode).toBe(200);
-    })
-
-    test("Debería agregar una pqr correctamente", async () => {
-
-        const postData = {
-            descripcion: "Cual es el precio de las uñas?",
-            id_user: 1,
-            fecha: "2023-05-23",
-            tipo: "Financiero",
-        };
-
-        const response = await request(app).post(`/createpqr/`).set('Cookie', cookie).send(postData);
-        expect(response.statusCode).toBe(302);
     })
 });
