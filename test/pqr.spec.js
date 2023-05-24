@@ -20,15 +20,15 @@ describe("GET - POST /listpqr/", () => {
         cookie = await login();
     });
 
-    test("Deberia responder con un estado 200", async () => {
-        const response = await request(app).get("/listpqr").set('Cookie', cookie).send();
-        expect(response.statusCode).toBe(200);
-    })
-    
     test("Debería responder una pqr correctamente", async () => {
         const id = 12;     
         const response = await request(app).post(`/listpqr/${id}`).set('Cookie', cookie).send();
         expect(response.statusCode).toBe(302);
+    })
+    
+    test("Deberia responder con un estado 200", async () => {
+        const response = await request(app).get("/listpqr").set('Cookie', cookie).send();
+        expect(response.statusCode).toBe(200);
     })
 });
 
