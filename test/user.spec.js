@@ -40,3 +40,34 @@ describe("GET /records", () => {
         await testGetEndpoint("/records",cookie);
     })
 });
+
+describe("GET /statistics", () => {
+    let cookie;
+    // Inicia sesión antes de ejecutar las pruebas
+    beforeAll(async () => {
+        cookie = await login();
+    });
+    test("deberia responder con un estado 200", async () => {
+        await testGetEndpoint("/statistics",cookie);
+    })
+});
+
+describe("GET - POST /admin", () => {
+    let cookie;
+    // Inicia sesión antes de ejecutar las pruebas
+    beforeAll(async () => {
+        cookie = await login();
+    });
+    test("deberia responder con un estado 200", async () => {
+        await testGetEndpoint("/admin",cookie);
+    });
+
+    test("Debería editar el precio de las uñas correctamente", async () => {
+        const id = 1;     
+        const postData = {
+            price: 80000,
+        };
+        const response = await request(app).post(`/admin/${id}`).set('Cookie', cookie).send(postData);
+        expect(response.statusCode).toBe(302);
+    });
+});
