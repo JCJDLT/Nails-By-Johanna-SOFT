@@ -26,8 +26,8 @@ describe("GET - POST /signup", () => {
             fullname: "Prueba test",
             email: "pruebatest@gmail.com",
             phone: 8787676565,
-            password1: "ejemplo",
-            password2: "ejemplo",
+            password1: process.env.TEST_PASSWORD_PRUEBA,
+            password2: process.env.TEST_PASSWORD_PRUEBA,
         };
 
         const response = await request(app).post("/signup").send(postData);
