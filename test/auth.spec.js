@@ -32,7 +32,7 @@ describe("GET - POST /signup", () => {
 
         const response = await request(app).post("/signup").send(postData);
         expect(response.statusCode).toBe(302);
-        expect(response.headers['location']).toBe('/profile');
+        expect(response.headers['location']).toBe('/');
     })
 });
 
@@ -52,7 +52,7 @@ describe("GET - POST /signin", () => {
 
         const response = await request(app).post("/signin").send(postData);
         expect(response.statusCode).toBe(302);
-        expect(response.headers['location']).toBe('/profile');
+        expect(response.headers['location']).toBe('/');
     })
 });
 
