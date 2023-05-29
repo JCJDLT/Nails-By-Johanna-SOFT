@@ -1,22 +1,27 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center my-2">
+            <h1>Catalogo de uñas</h1>
+            {{#if user}}
+                <h4>Bienvenida {{user.fullname}}</h4>
+            {{else}}
             <h4>
                 <a href="/signup" class="text">Registrate</a>
                 o
                 <a href="/signin" class="text">Ingresa</a>
                 para agendar tu cita.
             </h4>
+            {{/if}}
         </div>
     </div>
     <div class="portfolio-menu mt-2 mb-4">
         <ul>
-            <li class="btn btn-outline-white  active" data-filter="*">Todas</li>
-            <li class="btn btn-outline-white " data-filter=".pol">Polygel</li>
-            <li class="btn btn-outline-white " data-filter=".acri">Acrílico</li>
-            <li class="btn btn-outline-white " data-filter=".press">Press On</li>
-            <li class="btn btn-outline-white " data-filter=".semi">Semipermanente</li>
-            <li class="btn btn-outline-white " data-filter=".trad">Tradicional</li>
+            <li class="btn btn-outline-white fixed-size-button active" data-filter="*">Todas</li>
+            <li class="btn btn-outline-white fixed-size-button" data-filter=".pol">Polygel</li>
+            <li class="btn btn-outline-white fixed-size-button" data-filter=".acri">Acrílico</li>
+            <li class="btn btn-outline-white fixed-size-button" data-filter=".press">Press On</li>
+            <li class="btn btn-outline-white fixed-size-button" data-filter=".semi">Semipermanente</li>
+            <li class="btn btn-outline-white fixed-size-button" data-filter=".trad">Tradicional</li>
         </ul>
     </div>
     {{!-- Polygel --}}

@@ -1,3 +1,6 @@
+<div class="col-lg-12 text-center my-2" style="color: white;">
+    <h1>Lista de citas</h1>
+</div>
 <div class="container p-4">
     <div class="row">
         {{#each appointment}}
@@ -25,7 +28,7 @@
                     <a class="btn btn-primary" href="/appointment/done/{{id}}">
                         Realizada
                     </a>
-                    <a class="btn btn-danger" href="/appointment/delete/{{id}}">
+                    <a class="btn btn-danger" onclick="confirmDelete({{id}})">
                         Cancelar cita
                     </a>
                     <a class="btn btn-secondary" href="/appointment/edit/{{id}}">
@@ -46,3 +49,11 @@
         {{/each}}
     </div>
 </div>
+
+<script>
+    function confirmDelete(id) {
+        if (confirm('¿Estás seguro de que quieres eliminar esta cita?')) {
+            window.location.href = `/appointment/delete/${id}`;
+        }
+    }
+</script>

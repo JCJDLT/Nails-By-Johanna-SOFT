@@ -49,7 +49,7 @@ export const signUp = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/profile");
+      return res.redirect("/");
     });
 
   } catch (error) {
@@ -73,7 +73,7 @@ export const renderSignIn = (req, res, next) => {
 
 export const signIn = (req, res, next) => {
   passport.authenticate('local.signin', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signin?username=' + req.body.email,
     failureMessage: true,
     failureFlash: true,

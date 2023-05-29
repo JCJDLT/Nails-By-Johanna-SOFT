@@ -1,3 +1,6 @@
+<div class="col-lg-12 text-center my-2" style="color: white;">
+    <h1>Panel de estadisticas de la empresa</h1>
+</div>
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
@@ -42,31 +45,31 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    chartScript({{{ rows1 }}},'query1','Cantidad de citas por cada mes en el año actual','bar')
-    chartScript({{{ rows2 }}},'query2','Cantidad de dinero recaudado cada mes','line')
-    chartScript({{{ rows3 }}},'query3','Cantidad de uñas por tipo','pie')
-    chartScript({{{ rows4 }}},'query4','Cantidad de dinero por tipo','doughnut')
+    chartScript({{{ rows1 }}}, 'query1', 'Cantidad de citas por cada mes en el año actual', 'bar')
+    chartScript({{{ rows2 }}}, 'query2', 'Cantidad de dinero recaudado cada mes', 'line')
+    chartScript({{{ rows3 }}}, 'query3', 'Cantidad de uñas por tipo', 'pie')
+    chartScript({{{ rows4 }}}, 'query4', 'Cantidad de dinero por tipo', 'doughnut')
 
-    function chartScript(rows,name,nameLabel,type) {
+    function chartScript(rows, name, nameLabel, type) {
 
         const chartData = {
-            labels: rows.map(row => row.name),
+            labels: rows.map(row => translateMonthNames(row.name)),
             datasets: [
-            {
-                label: nameLabel,
-                data: rows.map(row => row.cantidad),
-                borderColor: '#000000',
-                backgroundColor: [
-                'rgba(73, 246, 217)',
-                'rgba(246, 73, 207 )',
-                'rgba(73, 220, 246 )',
-                'rgba(191, 73, 246)',
-                'rgba(73, 246, 217)',
-                'rgba(246, 73, 207 )',
-                'rgba(73, 220, 246 )'
-                ],
-                borderWidth: 1,
-            }
+                {
+                    label: nameLabel,
+                    data: rows.map(row => row.cantidad),
+                    borderColor: '#000000',
+                    backgroundColor: [
+                        'rgba(73, 246, 217)',
+                        'rgba(246, 73, 207 )',
+                        'rgba(73, 220, 246 )',
+                        'rgba(191, 73, 246)',
+                        'rgba(73, 246, 217)',
+                        'rgba(246, 73, 207 )',
+                        'rgba(73, 220, 246 )'
+                    ],
+                    borderWidth: 1,
+                }
             ]
         };
 
@@ -74,10 +77,50 @@
             type: type,
             data: chartData,
             options: {
-                ...(type === 'bar' || type === 'line' ? {scales: {y: {beginAtZero: true}}} : {}),
+                ...(type === 'bar' || type === 'line' ?
+                    {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: 'white'  // cambia el color del texto de las marcas en el eje Y
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'white'  // cambia el color del texto de las marcas en el eje X
+                                }
+                            }
+                        }
+                    } : {}),
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white',
+                        },
+                    },
+                },
             }
         };
 
+
         const chart = new Chart(document.getElementById(name), chartConfig);
+    }
+    function translateMonthNames(monthName) {
+        const monthNames = {
+            "January": "Enero",
+            "February": "Febrero",
+            "March": "Marzo",
+            "April": "Abril",
+            "May": "Mayo",
+            "June": "Junio",
+            "July": "Julio",
+            "August": "Agosto",
+            "September": "Septiembre",
+            "October": "Octubre",
+            "November": "Noviembre",
+            "December": "Diciembre"
+        };
+        return monthNames[monthName] || monthName;
     }
 </script>
