@@ -60,7 +60,7 @@ describe('DELETE /appointment/delete/:id', () => {
     });
 
     test('Deberia cambiar el estado de la cita y redireccionar a otra pagina', async () => {
-        const id = 92;
+        const id = 112;
         const response = await request(app).get(`/appointment/delete/${id}`).set('Cookie', cookie);
         expect(response.statusCode).toBe(302);
     });
